@@ -15,7 +15,6 @@ public abstract class Game {
         this.one = one;
         this.two = two;
     }
-
     public String getName() {
         return name;
     }

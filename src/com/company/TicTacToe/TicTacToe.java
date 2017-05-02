@@ -14,7 +14,8 @@ public class TicTacToe extends Game {
     Player two;
 
     public TicTacToe(Figure[][] board, String name, Player one, Player two) {
-        super("Tic Tac Toe", board);
+        super("Tic Tac Toe",board,one,two);
+       /* super("Tic Tac Toe", one,two); */
         this.one = one;
         this.two = two;
     }

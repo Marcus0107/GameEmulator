@@ -7,10 +7,11 @@ import com.company.Player;
 /**
  * Created by Marcus on 29.04.2017.
  */
-public class Chess extends Game{
+public class Chess extends Game {
 
     public Chess(Figure[][] board, Player one, Player two) {
-        super("Chess", board,one,two);
+
+        super("Chess", board, one, two);
     }
 
     @Override

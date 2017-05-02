@@ -9,4 +9,9 @@ public class Figure {
     public Figure(String displayRepresentation) {
         this.displayRepresentation = displayRepresentation;
     }
+
+    @Override
+    public String toString() {
+        return displayRepresentation;
+    }
 }
