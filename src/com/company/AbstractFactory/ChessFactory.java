@@ -14,6 +14,12 @@ public class ChessFactory implements GameFactory {
 
     @Override
     public Game createGame(Player one, Player two) {
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new Figure("");
+            }
+        }
         //region put figure
         //Schwarz
         putFigure(0, 0, "t");
@@ -35,13 +41,8 @@ public class ChessFactory implements GameFactory {
         putFigure(7, 6, "S");
         putFigure(7, 7, "T");
         //endregion
-
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             putFigure(1, i, "b");
-            putFigure(2,i," ");
-            putFigure(3,i," ");
-            putFigure(4,i," ");
-            putFigure(5,i," ");
             putFigure(6, i, "B");
         }
 
@@ -49,8 +50,9 @@ public class ChessFactory implements GameFactory {
         return new Chess(board, one, two);
     }
 
-    public void putFigure(int pos1, int pos2, String representation) {
-        board[pos1][pos2] = new Figure(representation);
+    public void putFigure(int horizontal, int vertical, String representation) {
+
+        board[vertical][horizontal] = new Figure(representation);
     }
 
 
