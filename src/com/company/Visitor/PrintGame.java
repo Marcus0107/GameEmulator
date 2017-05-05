@@ -6,18 +6,21 @@ import com.company.Figure;
 /**
  * Created by Marcus on 02.05.2017.
  */
-public class PrintGame implements  PrintVisitor {
+public class PrintGame implements PrintVisitor {
     @Override
     public void PrintChess(Chess chess) {
         Figure[][] board = chess.getBoard();
-        System.out.println("\t-\t-\t-\t-\t-\t-\t-\t-");
-        System.out.println("A|\t" + board[0][0] + "\t" + board[1][0]+"\t");
+        String[] lettrs = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
+        System.out.println("\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-");
+        //System.out.println("A|\t" + board[0][0] + "\t" + board[1][0]+"\t");
         for (int i = 0; i < 8; i++) {
-            for (int j = 0; j <8 ; j++) {
-               // System.out.print(chess.getBoard()[j][i])  ;
-
+            System.out.print(lettrs[i] + "|");
+            for (int j = 0; j < 8; j++) {
+                System.out.print("\t" + board[j][i] + "\t|");
             }
+            System.out.println();
+            System.out.println("\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-");
         }
-
+        System.out.println("\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8");
     }
 }
