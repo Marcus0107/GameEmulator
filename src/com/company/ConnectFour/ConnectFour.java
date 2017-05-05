@@ -1,8 +1,8 @@
 package com.company.ConnectFour;
 
-import com.company.Figure;
-import com.company.Game;
-import com.company.Player;
+import com.company.Parents.Figure;
+import com.company.Parents.Game;
+import com.company.Parents.Player;
 
 /**
  * Created by Marcus on 29.04.2017.
@@ -10,7 +10,7 @@ import com.company.Player;
 public class ConnectFour extends Game {
 
     public ConnectFour(Figure[][] board, Player one, Player two) {
-        super("Connect Four", board, one, two);
+        super("Connect Four", board, one, two,null);
 
     }
 

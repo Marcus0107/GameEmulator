@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Parents;
 
 /**
  * Created by Marcus on 29.04.2017.

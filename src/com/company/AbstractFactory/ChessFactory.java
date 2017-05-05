@@ -1,9 +1,10 @@
 package com.company.AbstractFactory;
 
 import com.company.Chess.Chess;
-import com.company.Figure;
-import com.company.Game;
-import com.company.Player;
+import com.company.Parents.Figure;
+import com.company.Parents.Game;
+import com.company.Parents.Player;
+import com.company.Strategy.ComputePlayerTwo;
 
 /**
  * Created by Marcus on 29.04.2017.
@@ -13,7 +14,7 @@ public class ChessFactory implements GameFactory {
     Figure[][] board = new Figure[8][8];
 
     @Override
-    public Game createGame(Player one, Player two) {
+    public Game createGame(Player one, Player two, ComputePlayerTwo strategy) {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -21,7 +22,7 @@ public class ChessFactory implements GameFactory {
             }
         }
         //region put figure
-        //Schwarz
+        //Schwarz wird als kleine Buchstaben dargestellt
         putFigure(0, 0, "t");
         putFigure(0, 1, "s");
         putFigure(0, 2, "l");
@@ -47,7 +48,7 @@ public class ChessFactory implements GameFactory {
         }
 
 
-        return new Chess(board, one, two);
+        return new Chess(board, one, two,strategy);
     }
 
     public void putFigure(int horizontal, int vertical, String representation) {

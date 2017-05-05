@@ -1,42 +1,62 @@
 package com.company.Chess;
 
-import com.company.Figure;
-import com.company.Game;
-import com.company.Player;
+import com.company.Parents.Figure;
+import com.company.Parents.Game;
+import com.company.Parents.Player;
+import com.company.Strategy.ComputePlayerTwo;
+import com.company.Visitor.PrintGame;
+import com.company.Visitor.PrintVisitor;
 
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Marcus on 29.04.2017.
  */
 
-public class Chess extends Game {
-    private HashMap<String, Integer> boardLetter;
+public class Chess extends Game
+{
+    private final HashMap<String, Integer> boardLetter;
 
 
-    public Chess(Figure[][] board, Player one, Player two) {
-        super("Chess", board, one, two);
+    public Chess(Figure[][] board, Player one, Player two, ComputePlayerTwo strategy)
+    {
+        super("Chess", board, one, two, strategy);
         boardLetter = getBoardLetter();
     }
 
     @Override
-    public void doMove(String move) {
+    public void doMove(String move) throws Exception
+    {
         String oldPosition = move.split(" ")[0];
         String newPosition = move.split(" ")[1];
 
-        int horizontalOld = boardLetter.get(oldPosition.toCharArray()[2]);
-        int verticalOld = (int)oldPosition.toCharArray()[3];
+        String oldBoardLetter = Character.toString(oldPosition.toCharArray()[1]);
+        int horizontalOld = boardLetter.get(oldBoardLetter);
+        int verticalOld = Integer.parseInt(Character.toString(oldPosition.toCharArray()[2]));
 
-        int horizontalNew = boardLetter.get(newPosition.toCharArray()[2]);
-        int verticalNew = (int)newPosition.toCharArray()[3];
+        String newBoardLetter = Character.toString(newPosition.toCharArray()[1]);
+        int horizontalNew = boardLetter.get(newBoardLetter);
+        int verticalNew = Integer.parseInt(Character.toString(newPosition.toCharArray()[2]));
 
-
+        Figure[][] board = this.getBoard();
+        boolean isSameFigure = board[horizontalOld-1][verticalOld-1].getDisplayRepresentation().equals(Character.toString(oldPosition.toCharArray()[0]));
+        if (isSameFigure)
+        {
+            this.setFigure(getFigure(horizontalOld-1, verticalOld-1), horizontalNew-1, verticalNew-1);
+            this.setFigure(new Figure(""), horizontalOld-1, verticalOld-1);
+            PrintVisitor visitor = new PrintGame();
+            visitor.PrintChess(this);
+        }
+        else
+        {
+            throw new Exception("There is a wrong figure at that position");
+        }
 
 
     }
 
-    private HashMap<String, Integer> getBoardLetter() {
+    private HashMap<String, Integer> getBoardLetter()
+    {
         HashMap<String, Integer> boarLetters = new HashMap<String, Integer>();
 
         boarLetters.put("A", 0);

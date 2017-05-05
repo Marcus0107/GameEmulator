@@ -5,4 +5,5 @@ package com.company.Visitor;
  */
 public interface Visitor {
     void accept(PrintVisitor printVisitor);
+    void accept(WinRateVisitor winRateVisitor);
 }

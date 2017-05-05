@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Parents;
 
 /**
  * Created by Marcus on 29.04.2017.
@@ -12,6 +12,11 @@ public class Figure {
 
     @Override
     public String toString() {
+        return displayRepresentation;
+    }
+
+    public String getDisplayRepresentation()
+    {
         return displayRepresentation;
     }
 }
