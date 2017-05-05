@@ -12,7 +12,6 @@ public class PrintGame implements PrintVisitor {
         Figure[][] board = chess.getBoard();
         String[] lettrs = new String[]{"A", "B", "C", "D", "E", "F", "G", "H"};
         System.out.println("\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-\t\t-");
-        //System.out.println("A|\t" + board[0][0] + "\t" + board[1][0]+"\t");
         for (int i = 0; i < 8; i++) {
             System.out.print(lettrs[i] + "|");
             for (int j = 0; j < 8; j++) {
@@ -23,4 +22,6 @@ public class PrintGame implements PrintVisitor {
         }
         System.out.println("\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8");
     }
+
+
 }

@@ -31,5 +31,5 @@ public abstract class Game {
         return two;
     }
 
-    public abstract void doMove();
+    public abstract void doMove(String move);
 }

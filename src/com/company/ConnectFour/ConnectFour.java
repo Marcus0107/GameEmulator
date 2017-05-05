@@ -15,7 +15,7 @@ public class ConnectFour extends Game {
     }
 
     @Override
-    public void doMove() {
+    public void doMove(String move) {
 
     }
 }

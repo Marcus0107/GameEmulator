@@ -21,7 +21,7 @@ public class TicTacToe extends Game {
     }
 
     @Override
-    public void doMove() {
+    public void doMove(String move) {
 
     }
 }

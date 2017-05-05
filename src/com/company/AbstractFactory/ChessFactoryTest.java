@@ -1,7 +1,6 @@
 package com.company.AbstractFactory;
 
 import com.company.Chess.Chess;
-import com.company.Game;
 import com.company.Player;
 import com.company.Visitor.PrintGame;
 import com.company.Visitor.PrintVisitor;
