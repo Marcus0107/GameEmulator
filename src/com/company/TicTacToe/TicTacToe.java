@@ -1,8 +1,8 @@
 package com.company.TicTacToe;
 
-import com.company.Parents.Figure;
-import com.company.Parents.Game;
-import com.company.Parents.Player;
+import com.company.Figure;
+import com.company.Builder.Game;
+import com.company.Player;
 
 /**
  * Created by Marcus on 29.04.2017.
@@ -13,12 +13,10 @@ public class TicTacToe extends Game {
     Player one;
     Player two;
 
-    public TicTacToe(Figure[][] board, String name, Player one, Player two) {
-        super("Tic Tac Toe",board,one,two,null);
-       /* super("Tic Tac Toe", one,two); */
-        this.one = one;
-        this.two = two;
+    public TicTacToe(String name, Player one, Player two, int bettingPot) {
+        super(name, one, two, bettingPot);
     }
+
 
     @Override
     public void doMove(String move) {

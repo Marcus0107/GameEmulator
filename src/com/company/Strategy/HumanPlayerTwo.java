@@ -1,26 +1,22 @@
 package com.company.Strategy;
 
-import com.company.Parents.Game;
+import com.company.Builder.Game;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Created by Marcus on 05.05.2017.
  */
-public class HumanPlayerTwo implements ComputePlayerTwo
-{
+public class HumanPlayerTwo implements ComputePlayerTwo {
 
     @Override
-    public void simulatePlayerTwo(Game game) throws Exception
-    {
+    public void simulatePlayerTwo(Game game) throws IOException {
+        System.out.println("Waiting for other player to do his move");
+        String move = game.getMove();
 
-        System.out.println();
-        System.out.println();
-        System.out.println("Input move");
-        System.out.println();
-        System.out.println();
-        //Scanner scanner = new Scanner(System.in);
-        //String move = scanner.nextLine();
-        //game.doMove(move);
-        game.doMove("SH8 SH3");
-
+        game.doMove(move);
     }
+
 }

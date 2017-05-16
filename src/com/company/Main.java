@@ -1,29 +1,44 @@
 package com.company;
 
-import com.company.AbstractFactory.ChessFactory;
+import com.company.Builder.ChessBuilder;
 import com.company.Chess.Chess;
-import com.company.Parents.Player;
 import com.company.Strategy.HumanPlayerTwo;
 import com.company.Visitor.PrintGame;
 import com.company.Visitor.PrintVisitor;
 
-public class Main
-{
+import java.io.IOException;
 
-    public static void main(String[] args) throws Exception
-    {
+public class Main {
 
-        Player one = new Player("Marcus", 1);
-        Player two = new Player("Patrick", 2);
-        //Es gibt später ein kleines Menu, in dem das spiel ausgewählt werden kann
-        ChessFactory factory = new ChessFactory();
-        Chess chess = (Chess) factory.createGame(one, two, new HumanPlayerTwo());
+    public static void main(String[] args) throws IOException {
+        // write your code here
+        ChessBuilder chessBuilder = new ChessBuilder();
 
-        //Initale ausgabe des Spielfelds
+        //Read Bet from player one
+        //Example 10€
+        Player one = new Player("Marcus", 1000);
+        Player two = new Player("Andreas", 1000);
+        chessBuilder.setBettingPot(one.getBetAsCents() + two.getBetAsCents());
+
+        chessBuilder.setName("Chess");
+        chessBuilder.setOne(one);
+        chessBuilder.setTwo(two);
+        chessBuilder.setStratey(new HumanPlayerTwo());
+
+        Chess chessGame = chessBuilder.createChess();
+
         PrintVisitor visitor = new PrintGame();
-        visitor.PrintChess(chess);
-        //Simulation des ersten Zuges, muss natürlich mehrmals ausgeführt werden
-        chess.getStrategy().simulatePlayerTwo(chess);
+        chessGame.accept(visitor);
 
+        while (true) {
+
+
+            if (chessGame.isWhiteToMove()) {
+                chessGame.doMove(chessGame.getMove());
+            } else {
+                chessGame.getStrategy().simulatePlayerTwo(chessGame);
+            }
+            chessGame.accept(visitor);
+        }
     }
 }

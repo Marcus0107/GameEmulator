@@ -1,11 +1,12 @@
 package com.company.Chess;
 
-import com.company.Parents.Figure;
-import com.company.Parents.Game;
-import com.company.Parents.Player;
+import com.company.Builder.Game;
+import com.company.Figure;
+import com.company.Player;
 import com.company.Strategy.ComputePlayerTwo;
 import com.company.Visitor.PrintGame;
 import com.company.Visitor.PrintVisitor;
+import com.company.Visitor.Visitor;
 
 import java.util.HashMap;
 
@@ -13,50 +14,71 @@ import java.util.HashMap;
  * Created by Marcus on 29.04.2017.
  */
 
-public class Chess extends Game
-{
-    private final HashMap<String, Integer> boardLetter;
+public class Chess extends Game implements Visitor {
+    final private HashMap<String, Integer> boardLetter;
+    final private ComputePlayerTwo strategy;
+    final private Figure[][] board;
+    boolean whiteToMove = true;
+
+    public Chess(String name, Figure[][] board, Player one, Player two, int bettingPot, ComputePlayerTwo strategy, Figure[][] board1) {
+        super(name, one, two, bettingPot);
+        this.boardLetter = getBoardLetter();
+        this.strategy = strategy;
+        this.board = board1;
+    }
+
+    public boolean isWhiteToMove() {
+        return whiteToMove;
+    }
 
 
-    public Chess(Figure[][] board, Player one, Player two, ComputePlayerTwo strategy)
-    {
-        super("Chess", board, one, two, strategy);
-        boardLetter = getBoardLetter();
+    public ComputePlayerTwo getStrategy() {
+        return strategy;
     }
 
     @Override
-    public void doMove(String move) throws Exception
-    {
-        String oldPosition = move.split(" ")[0];
-        String newPosition = move.split(" ")[1];
-
-        String oldBoardLetter = Character.toString(oldPosition.toCharArray()[1]);
-        int horizontalOld = boardLetter.get(oldBoardLetter);
-        int verticalOld = Integer.parseInt(Character.toString(oldPosition.toCharArray()[2]));
-
-        String newBoardLetter = Character.toString(newPosition.toCharArray()[1]);
-        int horizontalNew = boardLetter.get(newBoardLetter);
-        int verticalNew = Integer.parseInt(Character.toString(newPosition.toCharArray()[2]));
-
-        Figure[][] board = this.getBoard();
-        boolean isSameFigure = board[horizontalOld-1][verticalOld-1].getDisplayRepresentation().equals(Character.toString(oldPosition.toCharArray()[0]));
-        if (isSameFigure)
-        {
-            this.setFigure(getFigure(horizontalOld-1, verticalOld-1), horizontalNew-1, verticalNew-1);
-            this.setFigure(new Figure(""), horizontalOld-1, verticalOld-1);
-            PrintVisitor visitor = new PrintGame();
-            visitor.PrintChess(this);
-        }
-        else
-        {
-            throw new Exception("There is a wrong figure at that position");
+    public void doMove(String move) {
+        String moveToDo = move;
+        if (move == "") {
+            moveToDo = "SH2 SF1";
         }
 
+        String oldPosition = moveToDo.split(" ")[0];
+        String newPosition = moveToDo.split(" ")[1];
+        String figure = charToString(newPosition.toCharArray()[0]);
 
+        String horOld = charToString(oldPosition.toCharArray()[1]);
+        int horizontalOld = boardLetter.get(horOld);
+        int verticalOld = Integer.parseInt(charToString(oldPosition.toCharArray()[2]));
+
+        String horNew = Character.toString(newPosition.toCharArray()[1]);
+        int horizontalNew = boardLetter.get(horNew);
+        int verticalNew = Integer.parseInt(charToString(newPosition.toCharArray()[2]));
+
+        setBoard(horizontalOld, verticalOld, "");
+        setBoard(horizontalNew, verticalNew, figure);
+
+        if(whiteToMove){
+            whiteToMove = false;
+        }else{
+            whiteToMove = true;
+        }
     }
 
-    private HashMap<String, Integer> getBoardLetter()
-    {
+    public void setBoard(int horizontal, int vertical, String figure) {
+        board[vertical][horizontal] = new Figure(figure);
+    }
+
+    public Figure[][] getBoard() {
+        return board;
+    }
+
+
+    private String charToString(char character) {
+        return Character.toString(character);
+    }
+
+    private HashMap<String, Integer> getBoardLetter() {
         HashMap<String, Integer> boarLetters = new HashMap<String, Integer>();
 
         boarLetters.put("A", 0);
@@ -70,6 +92,11 @@ public class Chess extends Game
         return boarLetters;
 
 
+    }
+
+    @Override
+    public void accept(PrintVisitor printVisitor) {
+        printVisitor.accept(this);
     }
 }
 

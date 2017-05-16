@@ -4,14 +4,19 @@ package com.company.Parents;
  * Created by Marcus on 29.04.2017.
  */
 public class Player {
-    String name;
-    int elo;
+    final String name;
+    final int betAsCents;
 
-    public Player() {
+    public Player(String name, int bet) {
+        this.name = name;
+        betAsCents = bet;
     }
 
-    public Player(String name, int elo) {
-        this.name = name;
-        this.elo = elo;
+    public String getName() {
+        return name;
+    }
+
+    public int getBetAsCents() {
+        return betAsCents;
     }
 }
