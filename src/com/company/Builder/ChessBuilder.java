@@ -1,8 +1,8 @@
 package com.company.Builder;
 
 import com.company.Chess.Chess;
-import com.company.Figure;
-import com.company.Player;
+import com.company.Parents.Figure;
+import com.company.Parents.Player;
 import com.company.Strategy.ComputePlayerTwo;
 
 /**
@@ -73,7 +73,7 @@ public class ChessBuilder {
     }
 
     public Chess createChess() {
-        return new Chess(name, board, one, two, bettingPot, stratey, board);
+        return new Chess(name,board,one,two,bettingPot,stratey);
     }
 
     private void putFigure(int horizontal, int vertical, String representation) {

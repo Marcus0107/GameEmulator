@@ -1,7 +1,7 @@
 package com.company.Builder;
 
-import com.company.Figure;
-import com.company.Player;
+
+import com.company.Parents.Player;
 
 import java.io.BufferedReader;
 import java.io.IOException;

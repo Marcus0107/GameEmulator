@@ -1,12 +1,13 @@
 package com.company.Chess;
 
 import com.company.Builder.Game;
-import com.company.Figure;
-import com.company.Player;
+import com.company.Parents.Figure;
+import com.company.Parents.Player;
 import com.company.Strategy.ComputePlayerTwo;
 import com.company.Visitor.PrintGame;
 import com.company.Visitor.PrintVisitor;
 import com.company.Visitor.Visitor;
+import com.company.Visitor.WinRateVisitor;
 
 import java.util.HashMap;
 
@@ -20,11 +21,11 @@ public class Chess extends Game implements Visitor {
     final private Figure[][] board;
     boolean whiteToMove = true;
 
-    public Chess(String name, Figure[][] board, Player one, Player two, int bettingPot, ComputePlayerTwo strategy, Figure[][] board1) {
+    public Chess(String name, Figure[][] board, Player one, Player two, int bettingPot, ComputePlayerTwo strategy) {
         super(name, one, two, bettingPot);
         this.boardLetter = getBoardLetter();
         this.strategy = strategy;
-        this.board = board1;
+        this.board = board;
     }
 
     public boolean isWhiteToMove() {
@@ -97,6 +98,11 @@ public class Chess extends Game implements Visitor {
     @Override
     public void accept(PrintVisitor printVisitor) {
         printVisitor.accept(this);
+    }
+
+    @Override
+    public void accept(WinRateVisitor winRateVisitor) {
+
     }
 }
 

@@ -2,6 +2,7 @@ package com.company;
 
 import com.company.Builder.ChessBuilder;
 import com.company.Chess.Chess;
+import com.company.Parents.Player;
 import com.company.Strategy.HumanPlayerTwo;
 import com.company.Visitor.PrintGame;
 import com.company.Visitor.PrintVisitor;
