@@ -30,15 +30,21 @@ public class Main {
         PrintVisitor visitor = new PrintGame();
         chessGame.accept(visitor);
 
-        while (true) {
-
-
+        boolean gameIsRunning = true;
+        while (gameIsRunning) {
+            String move = "";
             if (chessGame.isWhiteToMove()) {
-                chessGame.doMove(chessGame.getMove());
+                move = chessGame.getMove();
             } else {
-                chessGame.getStrategy().simulatePlayerTwo(chessGame);
+                move = chessGame.getStrategy().simulatePlayerTwo(chessGame);
+            }
+            if (move == "Chek Mate") {
+                System.out.println(move);
+                chessGame.accept(visitor);
+                break;
             }
             chessGame.accept(visitor);
+
         }
     }
 }

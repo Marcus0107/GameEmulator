@@ -8,5 +8,5 @@ import java.io.IOException;
  * Created by Marcus on 05.05.2017.
  */
 public interface ComputePlayerTwo {
-    void simulatePlayerTwo(Game game) throws IOException;
+    String simulatePlayerTwo(Game game) throws IOException;
 }

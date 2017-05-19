@@ -12,11 +12,11 @@ import java.io.InputStreamReader;
 public class HumanPlayerTwo implements ComputePlayerTwo {
 
     @Override
-    public void simulatePlayerTwo(Game game) throws IOException {
+    public String simulatePlayerTwo(Game game) throws IOException {
         System.out.println("Waiting for other player to do his move");
         String move = game.getMove();
 
-        game.doMove(move);
+        return  move;
     }
 
 }
