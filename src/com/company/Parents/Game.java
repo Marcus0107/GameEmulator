@@ -1,43 +1,29 @@
 package com.company.Parents;
 
-import com.company.Strategy.ComputePlayerTwo;
-
-import java.util.LinkedList;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
- * Created by Marcus on 29.04.2017.
+ * Created by Marcus on 19.05.2017.
  */
-public abstract class Game {
+public class Game {
     final String name;
-    //not final, since it will change during the game often
-    Figure[][] board;
     final Player one;
     final Player two;
-    LinkedList<Figure[][]> oldPositions;
-    final ComputePlayerTwo strategy;
 
-    public Game(String name, Figure[][] board, Player one, Player two, ComputePlayerTwo strategy) {
-        this.board = board;
+    final int bettingPot;
+
+    public Game(String name, Player one, Player two, int bettingPot) {
         this.name = name;
         this.one = one;
         this.two = two;
-        this.oldPositions = new LinkedList<>();
-        this.strategy = strategy;
-    }
-
-    public ComputePlayerTwo getStrategy()
-    {
-        return strategy;
+        this.bettingPot = bettingPot;
     }
 
     public String getName() {
         return name;
     }
-
-    public Figure[][] getBoard() {
-        return board;
-    }
-
     public Player getOne() {
         return one;
     }
@@ -46,17 +32,13 @@ public abstract class Game {
         return two;
     }
 
-    public void addOldBoard(Figure[][] board){
-        oldPositions.add(board);
+    public void doMove(String move) {
+        System.out.println("Cant call doMove on super class");
     }
-
-    public Figure getFigure( int positionOne, int positionTwo){
-     return  this.board[positionOne][positionTwo];
-    }
-    public void setFigure(Figure figure, int positionOne, int positionTwo)
+    public String getMove() throws IOException
     {
-        this.board[positionOne][positionTwo] = figure;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        return br.readLine();
     }
 
-    public abstract void doMove(String move) throws Exception;
 }

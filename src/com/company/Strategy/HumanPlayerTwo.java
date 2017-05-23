@@ -1,10 +1,9 @@
 package com.company.Strategy;
 
-import com.company.Builder.Game;
+import com.company.Parents.Figure;
+import com.company.Parents.Game;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Created by Marcus on 05.05.2017.

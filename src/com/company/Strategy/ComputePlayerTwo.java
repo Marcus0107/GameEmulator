@@ -1,6 +1,7 @@
 package com.company.Strategy;
 
-import com.company.Builder.Game;
+
+import com.company.Parents.Game;
 
 import java.io.IOException;
 

@@ -24,7 +24,7 @@ public class ChessBuilder {
             }
         }
         //region put figure
-        //Schwarz
+        //Weis
         putFigure(0, 0, "t");
         putFigure(0, 1, "s");
         putFigure(0, 2, "l");
@@ -34,7 +34,7 @@ public class ChessBuilder {
         putFigure(0, 6, "s");
         putFigure(0, 7, "t");
 
-        //Weis
+        //Schwarz
         putFigure(7, 0, "T");
         putFigure(7, 1, "S");
         putFigure(7, 2, "L");
@@ -54,6 +54,7 @@ public class ChessBuilder {
     public void setName(String name) {
         this.name = name;
     }
+
 
 
     public void setOne(Player one) {

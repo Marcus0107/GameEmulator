@@ -1,4 +1,4 @@
-package com.company.Visitor;
+package com.company.Visitor.Interfaces;
 
 import com.company.Chess.Chess;
 

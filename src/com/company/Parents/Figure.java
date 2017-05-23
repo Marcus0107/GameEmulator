@@ -1,5 +1,9 @@
 package com.company.Parents;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * Created by Marcus on 29.04.2017.
  */
@@ -19,4 +23,9 @@ public class Figure {
     {
         return displayRepresentation;
     }
+
+    /**
+     * Created by Marcus on 29.04.2017.
+     */
+
 }
